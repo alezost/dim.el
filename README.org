@@ -1,0 +1,84 @@
+[[http://www.gnu.org/licenses/gpl-3.0.txt][file:https://img.shields.io/badge/license-GPL_3-orange.svg]]
+
+** About
+
+This Emacs package can be used to change the names of major and minor
+modes that are displayed in the mode-line.  This is an alternative to
+[[http://www.emacswiki.org/emacs/delight.el][delight]] package (see [[*Why?][Why?]] section below).
+
+** Installation
+
+*** Manual
+
+For the manual installation, clone the repo and add the directory to
+=load-path=:
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "/path/to/dim-dir")
+(when (require 'dim nil t)
+  (dim-major-names ...)
+  (dim-minor-names ...))
+#+END_SRC
+
+** Usage
+
+There are 4 functions, that you can use in your =.emacs=:
+
+- dim-major-name
+- dim-major-names
+- dim-minor-name
+- dim-minor-names
+
+So you can change the names by one, like this:
+
+#+BEGIN_SRC emacs-lisp
+(dim-major-name 'scheme-mode "λ")
+(dim-major-name 'help-mode "🄷")
+(dim-minor-name 'isearch-mode " 🔎")
+(dim-minor-name 'view-mode " 👀" 'view)
+#+END_SRC
+
+Or you can set multiple names at once, like this:
+#+BEGIN_SRC emacs-lisp
+(dim-major-names
+ '((emacs-lisp-mode           "EL")
+   (emacs-lisp-byte-code-mode "EL-byte")
+   (calendar-mode             "📆")))
+(dim-minor-names
+ '((visual-line-mode   " ↩")
+   (auto-fill-function " ↵")
+   (eldoc-mode         ""    eldoc)
+   (whitespace-mode    " _"  whitespace)
+   (paredit-mode       " ()" paredit)))
+#+END_SRC
+
+I prefer the latter variant as I like to keep all names in one place.
+
+As you can see, the functions for major modes take a mode symbol (which
+can be found by =M-: major-mode=) and a new mode-line name.
+
+The functions for minor modes also take a mode symbol (from
+=minor-mode-alist= variable) and a new name, and optionally a feature or
+file name where the minor mode comes from.  It is passed to
+=eval-after-load= function.  If the feature or file name is not
+specified, the mode name is changed immediately, but of course only if
+the mode is already available, so the package feature shouldn't be
+specified only for the modes that are available right away on emacs
+start (like =isearch-mode= or =visual-line-mode=).
+
+** Why?
+
+So why this package, if we already have [[http://www.emacswiki.org/emacs/DiminishedModes][diminish]] and [[http://www.emacswiki.org/emacs/DelightedModes][delight]]?  Well,
+=diminish= is great, but it is only for minor modes.
+
+As for the =delight=, the main reason is: I don't like that it mixes
+minor and major modes (they are set by =delight= function and stored in
+=delighted-modes= variable).  They are essentially different things and
+should be treated independently.  Also =delight= is "developed" on the
+wiki, which is not convenient for using and contributing.  And finally,
+I don't like some parts of the code (like adding =delight-major-mode= to
+=after-change-major-mode-hook= inside =delight= function — it should be
+a top-form!).
+
+But I say many thanks to the author of =delight= package as the code of
+=dim= is heavily based on it.
