@@ -8,6 +8,11 @@ modes that are displayed in the mode-line.  This is an alternative to
 
 ** Installation
 
+*** Automatic
+
+This package can be installed from [[http://melpa.org/][MELPA]] (with =M-x package-install= or
+=M-x list-packages=).
+
 *** Manual
 
 For the manual installation, clone the repo and add the directory to
