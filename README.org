@@ -75,17 +75,30 @@ start (like =isearch-mode= or =visual-line-mode=).
 
 ** Why?
 
-So why this package, if we already have [[http://www.emacswiki.org/emacs/DiminishedModes][diminish]] and [[http://www.emacswiki.org/emacs/DelightedModes][delight]]?  Well,
-=diminish= is great, but it is only for minor modes.
+So why this package, if we already have several packages for similar
+purposes?
 
-As for the =delight=, the main reason is: I don't like that it mixes
-minor and major modes (they are set by =delight= function and stored in
-=delighted-modes= variable).  They are essentially different things and
-should be treated independently.  Also =delight= is "developed" on the
-wiki, which is not convenient for using and contributing.  And finally,
-I don't like some parts of the code (like adding =delight-major-mode= to
-=after-change-major-mode-hook= inside =delight= function — it should be
-a top-form!).
+The most well-known package is [[http://www.emacswiki.org/emacs/DiminishedModes][diminish]].  It is great, but it is only
+for minor modes, also =diminish= function can be called only when a
+minor mode is available, so you have to wrap it into =eval-after-load=
+(or you can use =:diminish= keyword in [[https://github.com/jwiegley/use-package][use-package]]). For minor modes,
+there is also [[https://github.com/Malabarba/rich-minority][rich-minority]] package, which allows to hide and highlight
+mode-line names.
+
+For major modes, there is [[https://github.com/mrkkrp/cyphejor][cyphejor]] package, which allows to make complex
+rules for changing parts of mode names.  It can be also used for
+automatic abbreviation of these parts.  In contrast, =dim= is very
+simple and straight-forward: you just assign a new mode-line string to a
+mode name (symbol) and that's it.
+
+As for the [[http://www.emacswiki.org/emacs/DelightedModes][delight]] package, the main reason is: I don't like that it
+mixes minor and major modes (they are set by =delight= function and
+stored in =delighted-modes= variable).  They are essentially different
+things and should be treated independently.  Also =delight= is
+"developed" on the wiki, which is not convenient for using and
+contributing.  And finally, I don't like some parts of the code (like
+adding =delight-major-mode= to =after-change-major-mode-hook= inside
+=delight= function — it should be a top-level form!).
 
 But I say many thanks to the author of =delight= package as the code of
 =dim= is heavily based on it.
