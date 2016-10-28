@@ -49,7 +49,7 @@ Or you can set multiple names at once, like this:
 #+BEGIN_SRC emacs-lisp
 (dim-major-names
  '((emacs-lisp-mode           "EL")
-   (emacs-lisp-byte-code-mode "EL-byte")
+   (inferior-emacs-lisp-mode  "EL>")
    (calendar-mode             "📆")))
 (dim-minor-names
  '((visual-line-mode   " ↩")
