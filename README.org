@@ -73,6 +73,10 @@ the mode is already available, so the package feature shouldn't be
 specified only for the modes that are available right away on emacs
 start (like =isearch-mode= or =visual-line-mode=).
 
+Note that mode-name should not necessarily be a string, it can be any
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Data.html][mode-line construct]] supported by emacs.  For example, you can configure
+mode-name to display images instead of text (see [[https://github.com/alezost/dim.el/issues/8#issuecomment-368342568][issue 8]] for details).
+
 ** Why?
 
 So why this package, if we already have several packages for similar
