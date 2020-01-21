@@ -6,7 +6,7 @@
 
 This Emacs package can be used to change the names of major and minor
 modes that are displayed in the mode-line.  This is an alternative to
-[[http://www.emacswiki.org/emacs/delight.el][delight]] package (see [[*Why?][Why?]] section below).
+[[https://elpa.gnu.org/packages/delight.html][delight]] package (see *Why?* section below).
 
 ** Installation
 
